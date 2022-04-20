@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    /* -----------기존 javascript 방식----------*/
+    // let counter = 0;
+    // const button = document.getElementById("btn");
+    // const span = document.querySelector("span");
+    // function handleClick(){
+    //   counter = counter + 1;
+    //   span.innerText = `Total clicks: ${counter}`;
+    // }
+    // button.addEventListener("click", handleClick);
+
+    /* ---------1번 방식--------------*/
+    // const root = document.getElementById("root");
+    // let counter = 0;
+    // function countUp() {
+    //   counter = counter + 1;
+    //   render()
+    // }
+    // function render(){
+    //   ReactDOM.render(<Container />, root);
+    // }
+    // const Container = () => (
+    //   <div>
+    //     <h3>Total clicks: {counter}</h3>
+    //     <button onClick={countUp}>click me</button>
+    //   </div>
+    // );
+    // render()
+
+    /*--------------2번 방식(best)--------------*/
+    const root = document.getElementById("root");
+    function App() {
+      const [conunter, setCounter] = React.useState(0);
+      //modifier함수 사용해 컴포넌트의 stast 바꿀때 컴포넌트는 새로운 값을 가지고 다시 한번 렌더링
+      //위의 코드처럼 다시 렌더링 해줄 필요가 없음
+      const onClick = () => {
+        setCounter(conunter + 1);
+      };
+      return (
+        <div>
+          <h3>Total clicks: {conunter}</h3>
+          <button onClick={onClick}>click me</button>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, root);
+  </script>
+</html>

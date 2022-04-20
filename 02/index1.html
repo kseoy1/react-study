@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    let counter = 0;
+    function countUp() {
+      counter = counter + 1;
+      render() // 사용자에게 바뀐 데이터 보여주기 위해 리렌더링 해줘야함
+    }
+    function render(){ 
+      ReactDOM.render(<Container />, root); // button다시 생성x. 바뀐 부분만 새로 생성
+    }
+    const Container = () => (
+      <div>
+        <h3>Total clicks: {counter}</h3>
+        <button onClick={countUp}>click me</button>
+      </div>
+    );
+    render()
+  </script>
+</html>
